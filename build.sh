@@ -11,12 +11,14 @@ build/
 vendor/
 tests/
 node_modules/
+docs/
 composer.json
 composer.lock
 phpunit.xml.dist
 build.sh
 .gitignore
 .phpunit.result.cache
+CLAUDE.md
 *.zip
 EXCLUDES
 ( cd build && zip -rq "iterochat-${VERSION}.zip" iterochat )
