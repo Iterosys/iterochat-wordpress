@@ -15,6 +15,7 @@ docs/
 composer.json
 composer.lock
 phpunit.xml.dist
+phpcs.xml.dist
 build.sh
 .gitignore
 .phpunit.result.cache

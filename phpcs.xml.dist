@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ruleset name="IteroChat">
+	<description>Approval-critical WordPress coding standards for the IteroChat plugin (the checks WordPress.org enforces).</description>
+
+	<file>.</file>
+	<exclude-pattern>/vendor/</exclude-pattern>
+	<exclude-pattern>/tests/</exclude-pattern>
+	<exclude-pattern>/build/</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="ps"/>
+
+	<config name="minimum_wp_version" value="6.0"/>
+
+	<!-- Security: the three most common reasons WordPress.org rejects a plugin. -->
+	<rule ref="WordPress.Security.EscapeOutput"/>
+	<rule ref="WordPress.Security.ValidatedSanitizedInput"/>
+	<rule ref="WordPress.Security.NonceVerification"/>
+
+	<!-- Other review blockers. -->
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions"/>
+	<rule ref="WordPress.WP.AlternativeFunctions"/>
+	<rule ref="WordPress.DB.PreparedSQL"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="iterochat"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="iterochat"/>
+				<element value="ITEROCHAT"/>
+				<element value="Iterochat"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

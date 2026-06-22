@@ -15,10 +15,13 @@ This is the maintainer guide. End-user instructions live in `readme.txt` and at 
 # Syntax-check every PHP file
 find . -path ./vendor -prune -o -name '*.php' -print | xargs -n1 php -l
 
-# Run the PKCE unit test
+# Install dev tooling (PHPUnit + WordPress Coding Standards), then run both
 composer install
-vendor/bin/phpunit
+composer run test        # PHPUnit (the PKCE test)
+composer run lint        # phpcs against phpcs.xml.dist (the approval-critical WPCS sniffs)
 ```
+
+`composer run lint` runs the WordPress Coding Standards security sniffs (escaping, sanitizing, nonce verification, prefixing, i18n) defined in `phpcs.xml.dist`, without needing a WordPress install. Keep it at zero violations; those sniffs are what the directory enforces.
 
 ## WordPress.org Plugin Check (run before every submission)
 

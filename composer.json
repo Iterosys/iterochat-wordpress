@@ -2,7 +2,21 @@
   "name": "iterosys/iterochat-wordpress",
   "description": "IteroChat WordPress plugin",
   "license": "GPL-2.0-or-later",
-  "require": { "php": ">=7.4" },
-  "require-dev": { "phpunit/phpunit": "^9" },
-  "config": { "optimize-autoloader": true }
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9",
+    "wp-coding-standards/wpcs": "^3"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "scripts": {
+    "lint": "phpcs",
+    "test": "phpunit"
+  }
 }
