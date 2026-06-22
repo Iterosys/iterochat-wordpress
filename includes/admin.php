@@ -88,6 +88,7 @@ function iterochat_start_connect() {
 	if ( is_wp_error( $resp ) ) {
 		iterochat_set_notice( 'error', __( 'Could not start the connection: ', 'iterochat' ) . $resp->get_error_message() );
 		iterochat_redirect_to_settings();
+		return;
 	}
 
 	$ttl = isset( $resp['expires_in'] ) ? (int) $resp['expires_in'] : 600;
