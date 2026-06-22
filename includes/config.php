@@ -9,16 +9,14 @@ function iterochat_dashboard_url() {
 	return untrailingslashit( $url );
 }
 
-/** API origin (device-code + token + connection read). */
+/** API origin (device-code + token + connection read). Override with ITEROCHAT_API_URL for dev. */
 function iterochat_api_url() {
-	// NOTE: placeholder until the real production API origin is confirmed.
-	$url = defined( 'ITEROCHAT_API_URL' ) ? ITEROCHAT_API_URL : 'https://iterochat.com';
+	$url = defined( 'ITEROCHAT_API_URL' ) ? ITEROCHAT_API_URL : 'https://api.iterochat.com';
 	return untrailingslashit( $url );
 }
 
-/** Widget static host (serves widget.js). */
+/** Widget static host (serves widget.js). Override with ITEROCHAT_WIDGET_URL for dev. */
 function iterochat_widget_url() {
-	// NOTE: placeholder until the real production widget host is confirmed.
-	$url = defined( 'ITEROCHAT_WIDGET_URL' ) ? ITEROCHAT_WIDGET_URL : 'https://iterochat.com';
+	$url = defined( 'ITEROCHAT_WIDGET_URL' ) ? ITEROCHAT_WIDGET_URL : 'https://widget.iterochat.com';
 	return untrailingslashit( $url );
 }
