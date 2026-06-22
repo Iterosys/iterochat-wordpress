@@ -50,29 +50,28 @@ function iterochat_enqueue_assets( $hook ) {
 	) );
 }
 
-/** Handle the POST actions. */
+/** Handle the POST actions. A single nonce protects every settings-page form, and it is
+ *  verified before any request data is read or processed. */
 add_action( 'admin_init', 'iterochat_handle_actions' );
 function iterochat_handle_actions() {
-	if ( ! is_admin() || empty( $_POST['iterochat_action'] ) || ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! isset( $_POST['iterochat_action'] ) || ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
+	check_admin_referer( 'iterochat_admin' );
 	$action = sanitize_key( wp_unslash( $_POST['iterochat_action'] ) );
 
 	if ( 'connect' === $action ) {
-		check_admin_referer( 'iterochat_connect' );
 		iterochat_start_connect();
 	} elseif ( 'cancel' === $action ) {
-		check_admin_referer( 'iterochat_cancel' );
 		delete_transient( 'iterochat_device_flow' );
 		iterochat_redirect_to_settings();
 	} elseif ( 'disconnect' === $action ) {
-		check_admin_referer( 'iterochat_disconnect' );
 		iterochat_clear_connection();
 		iterochat_set_notice( 'success', __( 'Disconnected. The widget has been removed from your site.', 'iterochat' ) );
 		iterochat_redirect_to_settings();
 	} elseif ( 'toggle' === $action ) {
-		check_admin_referer( 'iterochat_toggle' );
-		iterochat_update_connection( array( 'enabled' => ! empty( $_POST['iterochat_enabled'] ) ) );
+		$enabled = isset( $_POST['iterochat_enabled'] );
+		iterochat_update_connection( array( 'enabled' => $enabled ) );
 		iterochat_set_notice( 'success', __( 'Saved.', 'iterochat' ) );
 		iterochat_redirect_to_settings();
 	}
@@ -196,7 +195,7 @@ function iterochat_render_settings_page() {
 				?>
 			</p>
 			<form method="post">
-				<?php wp_nonce_field( 'iterochat_toggle' ); ?>
+				<?php wp_nonce_field( 'iterochat_admin' ); ?>
 				<input type="hidden" name="iterochat_action" value="toggle" />
 				<label>
 					<input type="checkbox" name="iterochat_enabled" value="1" <?php checked( ! empty( $conn['enabled'] ) ); ?> />
@@ -205,7 +204,7 @@ function iterochat_render_settings_page() {
 				<?php submit_button( __( 'Save', 'iterochat' ), 'secondary', 'submit', false ); ?>
 			</form>
 			<form method="post" style="margin-top:1em;">
-				<?php wp_nonce_field( 'iterochat_disconnect' ); ?>
+				<?php wp_nonce_field( 'iterochat_admin' ); ?>
 				<input type="hidden" name="iterochat_action" value="disconnect" />
 				<?php submit_button( __( 'Disconnect', 'iterochat' ), 'delete', 'submit', false ); ?>
 			</form>
@@ -219,7 +218,7 @@ function iterochat_render_settings_page() {
 			</p>
 			<p id="iterochat-status" class="description"><?php esc_html_e( 'Waiting for approval...', 'iterochat' ); ?></p>
 			<form method="post">
-				<?php wp_nonce_field( 'iterochat_cancel' ); ?>
+				<?php wp_nonce_field( 'iterochat_admin' ); ?>
 				<input type="hidden" name="iterochat_action" value="cancel" />
 				<?php submit_button( __( 'Cancel', 'iterochat' ), 'link', 'submit', false ); ?>
 			</form>
@@ -247,7 +246,7 @@ function iterochat_render_settings_page() {
 function iterochat_render_connect_button() {
 	?>
 	<form method="post">
-		<?php wp_nonce_field( 'iterochat_connect' ); ?>
+		<?php wp_nonce_field( 'iterochat_admin' ); ?>
 		<input type="hidden" name="iterochat_action" value="connect" />
 		<?php submit_button( __( 'Connect to IteroChat', 'iterochat' ), 'primary', 'submit', false ); ?>
 	</form>

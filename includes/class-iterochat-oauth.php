@@ -1,9 +1,13 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class Iterochat_OAuth {
 
 	/** base64url without padding. */
 	public static function base64url( $bin ) {
+		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- base64url encoding for PKCE (RFC 7636), not obfuscation.
 		return rtrim( strtr( base64_encode( $bin ), '+/', '-_' ), '=' );
 	}
 
