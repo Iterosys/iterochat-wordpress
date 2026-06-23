@@ -194,6 +194,11 @@ function iterochat_render_settings_page() {
 				printf( esc_html__( 'Connected to %s.', 'iterochat' ), '<strong>' . esc_html( $conn['org_name'] ) . '</strong>' );
 				?>
 			</p>
+			<p>
+				<a href="<?php echo esc_url( iterochat_dashboard_url() . '/dashboard/conversations' ); ?>" class="button button-secondary" target="_blank" rel="noopener">
+					<?php esc_html_e( 'Open IteroChat dashboard', 'iterochat' ); ?>
+				</a>
+			</p>
 			<form method="post">
 				<?php wp_nonce_field( 'iterochat_admin' ); ?>
 				<input type="hidden" name="iterochat_action" value="toggle" />
