@@ -43,6 +43,13 @@ Yes. Use the "Show the chat widget on this site" toggle on the plugin page.
 = How do I disconnect? =
 Click "Disconnect" on the plugin page, or open Settings then Connected apps in your IteroChat dashboard and disconnect the site there. Either way access is revoked right away.
 
+== Screenshots ==
+
+1. The IteroChat page in your WordPress admin, ready to connect.
+2. Approving the connection for your organization on iterochat.com.
+3. Connected: toggle the widget on or off, or open your IteroChat dashboard.
+4. The chat widget live on your site.
+
 == Changelog ==
 
 = 0.1.0 =

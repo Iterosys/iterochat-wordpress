@@ -7,6 +7,7 @@ mkdir -p build/iterochat
 rsync -a --exclude-from=- ./ build/iterochat/ <<'EXCLUDES'
 .git/
 .github/
+.wordpress-org/
 build/
 vendor/
 tests/
