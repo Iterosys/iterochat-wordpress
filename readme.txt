@@ -8,7 +8,7 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
-Add the IteroChat AI customer support chat widget to your WordPress site. Connect in one click, no code required.
+AI customer support chat widget and chatbot for WordPress. Connect IteroChat in one click, no code. Live chat with instant AI replies.
 
 == Description ==
 
