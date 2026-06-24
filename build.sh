@@ -18,6 +18,7 @@ composer.lock
 phpunit.xml.dist
 phpcs.xml.dist
 build.sh
+.wp-env.json
 .gitignore
 .phpunit.result.cache
 CLAUDE.md
