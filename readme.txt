@@ -1,4 +1,4 @@
-=== IteroChat ===
+=== IteroChat - AI Powered Customer Support ===
 Contributors: shahad001
 Tags: chat, customer support, live chat, ai chatbot, helpdesk
 Requires at least: 6.0
